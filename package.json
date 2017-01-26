@@ -1,0 +1,9 @@
+{
+  "name": "flow-result-checker",
+  "version": "0.0.1",
+  "description": "A package to avoid reporting errors in `node_modules`.",
+  "main": "index.js",
+  "repository": "https://github.com/signavio/flow-result-checker.git",
+  "author": "Julius Breckel <julius.breckel@signavio.com>",
+  "license": "MIT"
+}
