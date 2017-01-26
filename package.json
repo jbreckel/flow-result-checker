@@ -6,7 +6,13 @@
   "repository": "https://github.com/signavio/flow-result-checker.git",
   "author": "Julius Breckel <julius.breckel@signavio.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint index.js test/"
+  },
   "devDependencies": {
-    "eslint-config-signavio": "^1.4.2"
+    "eslint": "^3.14.1",
+    "eslint-config-signavio": "^1.4.2",
+    "jest": "^18.1.0"
   }
 }
