@@ -7,7 +7,7 @@ const chalk = require('chalk')
 const ora = require('ora')
 
 const { resolve } = require('path')
-const { writeFileSync } = require('fs')
+const { writeFileSync, realpathSync } = require('fs')
 const mkdirp = require('mkdirp')
 
 const { spawnSync } = require('child_process')
@@ -15,6 +15,10 @@ const { spawnSync } = require('child_process')
 const { version } = require('./package.json')
 
 const debug = (str) => console.log(chalk.yellow(str))
+
+// https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/config/paths.js#L17
+const appDirectory = realpathSync(process.cwd())
+const resolveAppPath = (relativePath) => resolve(appDirectory, relativePath)
 
 const defaultOptions = {
   file: 'results.txt',
@@ -41,17 +45,19 @@ program
   )
   .parse(process.argv)
 
-const { file, errorFile, dir, debugging } = program
+const { file, errorFile, dir = '', debugging } = program
 if ( debugging ) {
   debug('file       ', file)
   debug('errorFile  ', errorFile)
   debug('dir        ', dir)
 }
 
+const dirPath = dir.indexOf('/') !== 0 ? resolveAppPath(dir) : resolve(dir)
+
 try {
   if ( dir ) {
     try {
-      mkdirp.sync(resolve(dir))
+      mkdirp.sync(dirPath)
     } catch (e) {
       console.error(chalk.bold.red(e.stack))
       process.exit(1)
@@ -79,7 +85,7 @@ try {
 
   if ( stdout ) {
     if ( dir ) {
-      writeFileSync(resolve(dir, file), stdout)
+      writeFileSync(resolve(dirPath, file), stdout)
     }
     console.log('')
     console.log('Results:')
@@ -102,7 +108,7 @@ try {
   }
 } catch (e) {
   if ( dir ) {
-    writeFileSync(resolve(dir, errorFile), e.stack)
+    writeFileSync(resolve(dirPath, errorFile), e.stack)
   }
   process.exit(1)
 }
