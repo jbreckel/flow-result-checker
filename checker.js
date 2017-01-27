@@ -76,10 +76,10 @@ module.exports = () => {
 
         if ( result.length > 0 ) {
           console.log(`
-    ${chalk.red(result.join('\n\n'))}
+${chalk.red(result.join('\n\n'))}
 
-    ${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`)}
-    `)
+${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`)}
+`)
           process.exit(1)
         } else {
           console.log(chalk.bold.green('\nFound 0 errors\n'))
