@@ -7,9 +7,7 @@ const { resolve } = require('path')
 
 const { spawnSync } = require('child_process')
 
-const createChecker = require('./checker')
-
-const checker = createChecker()
+const checker = require('./checker')()
 
 const spinner = ora('Running flow').start()
 const res = spawnSync(
