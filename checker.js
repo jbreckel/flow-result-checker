@@ -20,7 +20,7 @@ const defaultOptions = {
 }
 
 module.exports = () => {
-  const debug = (str) => console.log(chalk.yellow(str))
+  const debug = (...str) => console.log(chalk.yellow(...str))
 
   program
     .version(version)
