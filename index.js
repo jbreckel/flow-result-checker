@@ -56,12 +56,7 @@ const dirPath = dir.indexOf('/') !== 0 ? resolveAppPath(dir) : resolve(dir)
 
 try {
   if ( dir ) {
-    try {
-      mkdirp.sync(dirPath)
-    } catch (e) {
-      console.error(chalk.bold.red(e.stack))
-      process.exit(1)
-    }
+    mkdirp.sync(dirPath)
   }
 
   const spinner = ora('Running flow').start()
@@ -107,6 +102,7 @@ try {
     }
   }
 } catch (e) {
+  console.error(chalk.bold.red(e.stack))
   if ( dir ) {
     writeFileSync(resolve(dirPath, errorFile), e.stack)
   }
