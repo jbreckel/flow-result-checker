@@ -4,6 +4,7 @@
 
 const program = require('commander')
 const chalk = require('chalk')
+const ora = require('ora')
 
 const { resolve } = require('path')
 const { writeFileSync } = require('fs')
@@ -47,47 +48,45 @@ if ( debugging ) {
   debug('dir        ', dir)
 }
 
-if ( dir ) {
-  try {
-    mkdirp.sync(resolve(dir))
-  } catch (e) {
-    console.error(chalk.bold.red(e.stack))
+try {
+  if ( dir ) {
+    try {
+      mkdirp.sync(resolve(dir))
+    } catch (e) {
+      console.error(chalk.bold.red(e.stack))
+      process.exit(1)
+    }
+  }
+
+  const spinner = ora('Running flow').start()
+  const res = spawnSync(
+    'flow',
+    ['check'],
+    {
+      encoding: 'utf8',
+      cwd: resolve('.'),
+    }
+  )
+  spinner.stop()
+
+  const stdout = String(res.stdout)
+  const stderr = String(res.stderr)
+
+  if ( stderr ) {
+    console.error(chalk.bold.red(stderr))
     process.exit(1)
   }
-}
 
-const ora = require('ora')
-
-const spinner = ora('Running flow').start()
-const res = spawnSync(
-  'flow',
-  ['check'],
-  {
-    encoding: 'utf8',
-    cwd: resolve('.'),
-  }
-)
-spinner.stop()
-
-const stdout = String(res.stdout)
-const stderr = String(res.stderr)
-
-if ( stderr ) {
-  console.error(chalk.bold.red(stderr))
-  process.exit(1)
-}
-
-if ( stdout ) {
-  if ( dir ) {
-    writeFileSync(resolve(dir, file), stdout)
-  }
-  console.log('')
-  console.log('Results:')
-  console.log('--------')
-  if ( debugging ) {
-    debug(stdout)
-  }
-  try {
+  if ( stdout ) {
+    if ( dir ) {
+      writeFileSync(resolve(dir, file), stdout)
+    }
+    console.log('')
+    console.log('Results:')
+    console.log('--------')
+    if ( debugging ) {
+      debug(stdout)
+    }
     const result = stdout
       .replace(/\nFound.*errors?\n/, '')
       .split(/\n\n/)
@@ -100,10 +99,10 @@ if ( stdout ) {
     } else {
       console.log(chalk.bold.green('\nFound 0 errors\n'))
     }
-  } catch (e) {
-    if ( dir ) {
-      writeFileSync(resolve(dir, errorFile), e.stack)
-    }
-    process.exit(1)
   }
+} catch (e) {
+  if ( dir ) {
+    writeFileSync(resolve(dir, errorFile), e.stack)
+  }
+  process.exit(1)
 }
