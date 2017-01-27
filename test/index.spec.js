@@ -1,5 +1,6 @@
 const { spawnSync } = require('child_process')
 const { resolve } = require('path')
+const createChecker = require('../checker')
 
 describe('main tool', () => {
   it('should display help', () => {
@@ -24,15 +25,10 @@ describe('main tool', () => {
   })
 
   it('should find no errors in `index.js`', () => {
-    const expected = `
-      Results:
-      --------
-
-      Found 0 errors
-
+    const expected = `Found 0 errors
     `
 
-    const { stdout } = spawnSync('node', ['index.js'], { encoding: 'utf8' })
+    const { stdout } = spawnSync('flow', ['check'], { encoding: 'utf8' })
 
     expect(stdout.replace(/ /g, '')).toEqual(expected.replace(/ /g, ''))
   })
