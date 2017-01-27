@@ -94,7 +94,7 @@ try {
       debug(stdout)
     }
     const result = stdout
-      .replace(/\nFound.*errors?\n/, '')
+      .replace(/\n*Found.*errors?\n/, '')
       .split(/\n\n/)
       .filter((line) => line && !line.includes('node_modules'))
 
