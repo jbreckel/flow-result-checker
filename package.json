@@ -6,7 +6,7 @@
   "bin": {
     "flow-result-checker": "./index.js"
   },
-  "repository": "https://github.com/signavio/flow-result-checker.git",
+  "repository": "https://github.com/jbreckel/flow-result-checker.git",
   "author": "Julius Breckel <julius.breckel@signavio.com>",
   "license": "MIT",
   "scripts": {
