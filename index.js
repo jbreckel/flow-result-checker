@@ -82,9 +82,6 @@ try {
     if ( dir ) {
       writeFileSync(resolve(dirPath, file), stdout)
     }
-    console.log('')
-    console.log('Results:')
-    console.log('--------')
     if ( debugging ) {
       debug(stdout)
     }
@@ -94,8 +91,11 @@ try {
       .filter((line) => line && !line.includes('node_modules'))
 
     if ( result.length > 0 ) {
-      console.log(chalk.red(result.join('\n\n')))
-      console.log(chalk.bold.red(`\n\nFound ${result.length} errors\n`))
+      console.log(`
+${chalk.red(result.join('\n\n'))}
+
+${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`)}
+`)
       process.exit(1)
     } else {
       console.log(chalk.bold.green('\nFound 0 errors\n'))
