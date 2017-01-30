@@ -27,10 +27,11 @@ Your `package.json`:
   }
 ```
 
-with npm:
+with npm:  
 `npm run flow` will only print errors in your code  
 `npm run flow-with-save` will print errors in your code, but save the whole result in ./flow/results.txt
 
-with yarn:
+
+with yarn:  
 `yarn flow` will only print errors in your code  
 `yarn flow-with-save` will print errors in your code, but save the whole result in ./flow/results.txt
