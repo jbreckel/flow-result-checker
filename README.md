@@ -19,8 +19,8 @@ You can choose to store the whole result as a `txt` file by specifying a directo
 Your `package.json`:
 ```
   "scripts": {
-    "flow": "flow check | flow-result-checker",
-    "flow-with-save": "flow check | flow-result-checker -d ./flow"
+    "flow": "flow check --show-all | flow-result-checker",
+    "flow-with-save": "flow check --show-all | flow-result-checker -d ./flow"
   },
   "dependencies": {
     "flow-bin": "x.x.x"
