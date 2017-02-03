@@ -1,5 +1,7 @@
 # flow-result-checker
 
+[![Build Status](https://travis-ci.org/jbreckel/flow-result-checker.svg?branch=master)](https://travis-ci.org/jbreckel/flow-result-checker)
+
 This is a small helper script, that parses `flow` output and filters errors inside `node_modules`.
 Afterwards returns the normal `flow` output for errors inside your package.
 
