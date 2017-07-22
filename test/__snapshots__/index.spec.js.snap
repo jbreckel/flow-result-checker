@@ -1,0 +1,16 @@
+exports[`main tool should display help 1`] = `
+"
+Usage:index[options]
+
+
+Options:
+
+-V,--versionoutputtheversionnumber
+--no-color
+--debugging
+-d,--dir<dir>Thedirectorywheretosavetheflowresultanderrors.Ifnotspecifiednofileswillbesaved.
+-f,--file<filename>Nameoftheresultfile.defaultsto\'results.txt\'
+-e,--error-file<filename>Nameofthefilewhereparsingerrorsarestored.defaultsto\'error.txt\'
+-h,--helpoutputusageinformation
+"
+`;
