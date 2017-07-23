@@ -72,7 +72,7 @@ module.exports = () => {
         const result = stdout
           .replace(/\n*Found.*errors?\n/, '')
           .split(/\n\n/)
-          .filter((line) => line && !line.includes('node_modules'))
+          .filter((line) => line && !line.includes('No errors!') && !line.includes('node_modules'))
 
         if ( result.length > 0 ) {
           console.log(`
