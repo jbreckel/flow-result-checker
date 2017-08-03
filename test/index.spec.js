@@ -1,12 +1,14 @@
-const { spawnSync } = require('child_process')
+const { sync: spawnSync } = require('cross-spawn')
 const { resolve } = require('path')
 const createChecker = require('../checker')
+
+const normalizeString = s => s.replace(/ +/g, ' ').replace(/\r/g, '')
 
 describe('main tool', () => {
   it('should display help', () => {
     const { stdout } = spawnSync('node', ['index.js', '--help'], { encoding: 'utf8' })
 
-    expect(stdout.replace(/ +/g, ' ')).toMatchSnapshot();
+    expect(normalizeString(stdout)).toMatchSnapshot()
   })
 
   it('should find no errors in `index.js`', () => {
@@ -15,6 +17,6 @@ describe('main tool', () => {
 
     const { stdout } = spawnSync('flow', ['check'], { encoding: 'utf8' })
 
-    expect(stdout.replace(/ +/g, ' ')).toEqual(expected.replace(/ +/g, ' '))
+    expect(normalizeString(stdout)).toEqual(normalizeString(expected))
   })
 })
