@@ -26,8 +26,8 @@ describe('main tool', () => {
         const { stdout: flowStdout } = spawnSync('flow', ['--show-all-errors'], { cwd: resolve(__dirname, 'examples', exampleName), encoding: 'utf8' })
         const { status, stderr, stdout } = spawnSync('node', ['index.js'], { encoding: 'utf8', input: flowStdout })
 
-        expect(stdout.replace(/ +/g, ' ').replace(/\r/g, '')).toMatchSnapshot()
-        expect(stderr.replace(/ +/g, ' ').replace(/\r/g, '')).toMatchSnapshot()
+        expect(normalizeString(stdout)).toMatchSnapshot()
+        expect(normalizeString(stderr)).toMatchSnapshot()
 
         if (expectSuccess) {
           expect(status).toBe(0)
