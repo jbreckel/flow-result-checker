@@ -70,6 +70,7 @@ module.exports = () => {
           debug(stdout)
         }
         const result = stdout
+          .replace(/\r/g, '')
           .replace(/\n*Found.*errors?\n/, '')
           .replace(/\n*No errors!\n/, '')
           .split(/\n\n/)
