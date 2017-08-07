@@ -1,6 +1,7 @@
 # flow-result-checker
 
-[![Build Status](https://travis-ci.org/jbreckel/flow-result-checker.svg?branch=master)](https://travis-ci.org/jbreckel/flow-result-checker)
+[![Build Status](https://travis-ci.org/jbreckel/flow-result-checker.svg?branch=master)](https://travis-ci.org/jbreckel/flow-result-checker) 
+[![Build Status](https://ci.appveyor.com/api/projects/status/1yii01mrx6ied4bt/branch/master?svg=true)](https://ci.appveyor.com/project/jbreckel/flow-result-checker/branch/master) 
 [![npm version](https://badge.fury.io/js/flow-result-checker.svg)](https://badge.fury.io/js/flow-result-checker)
 
 This is a small helper script, that parses `flow` output and filters errors inside `node_modules`.
