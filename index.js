@@ -10,6 +10,5 @@ process.stdin.on('readable', () => {
 });
 
 process.stdin.on('end', () => {
-	console.log({data});
 	checker({ stdout: data.join('') });
 });
