@@ -3,4 +3,8 @@ module.exports = {
   globals: {
     expect: true,
   },
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['error', require('./prettier.config')],
+  },
 }
