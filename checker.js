@@ -12,7 +12,7 @@ const { version } = require('./package.json')
 
 // https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/config/paths.js#L17
 const appDirectory = realpathSync(process.cwd())
-const resolveAppPath = (relativePath) => resolve(appDirectory, relativePath)
+const resolveAppPath = relativePath => resolve(appDirectory, relativePath)
 
 const defaultOptions = {
   file: 'results.txt',
@@ -43,7 +43,7 @@ module.exports = () => {
     .parse(process.argv)
 
   const { file, errorFile, dir = '', debugging } = program
-  if ( debugging ) {
+  if (debugging) {
     debug('file       ', file)
     debug('errorFile  ', errorFile)
     debug('dir        ', dir)
@@ -53,20 +53,20 @@ module.exports = () => {
 
   return ({ stdout, stderr }) => {
     try {
-      if ( dir ) {
+      if (dir) {
         mkdirp.sync(dirPath)
       }
 
-      if ( stderr ) {
+      if (stderr) {
         console.error(chalk.bold.red(stderr))
         process.exit(1)
       }
 
-      if ( stdout ) {
-        if ( dir ) {
+      if (stdout) {
+        if (dir) {
           writeFileSync(resolve(dirPath, file), stdout)
         }
-        if ( debugging ) {
+        if (debugging) {
           debug(stdout)
         }
         const result = stdout
@@ -74,13 +74,15 @@ module.exports = () => {
           .replace(/\n*Found.*errors?\n/, '')
           .replace(/\n*No errors!\n/, '')
           .split(/\n\n/)
-          .filter((line) => line && !line.includes('node_modules'))
+          .filter(line => line && !line.includes('node_modules'))
 
-        if ( result.length > 0 ) {
+        if (result.length > 0) {
           console.log(`
 ${chalk.red(result.join('\n\n'))}
 
-${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`)}
+${chalk.bold.red(
+            `Found ${result.length} error${result.length === 1 ? '' : 's'}`
+          )}
 `)
           process.exit(1)
         } else {
@@ -89,7 +91,7 @@ ${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`
       }
     } catch (e) {
       console.error(chalk.bold.red(e.stack))
-      if ( dir ) {
+      if (dir) {
         writeFileSync(resolve(dirPath, errorFile), e.stack)
       }
       process.exit(1)
