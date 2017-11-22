@@ -1,2 +1,2 @@
 // @flow
-require('x');
+require('x')

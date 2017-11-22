@@ -23,11 +23,10 @@ describe('main tool', () => {
   describe('examples', () => {
     const buildSnapshotTest = (exampleName, expectSuccess) => {
       it('matches snapshot', () => {
-        const { stdout: flowStdout } = spawnSync(
-          'flow',
-          ['--show-all-errors'],
-          { cwd: resolve(__dirname, 'examples', exampleName), encoding: 'utf8' }
-        )
+        const { stdout: flowStdout } = spawnSync('flow', ['--show-all-errors'], {
+          cwd: resolve(__dirname, 'examples', exampleName),
+          encoding: 'utf8',
+        })
         const { status, stderr, stdout } = spawnSync('node', ['index.js'], {
           encoding: 'utf8',
           input: flowStdout,

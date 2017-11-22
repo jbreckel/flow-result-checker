@@ -74,15 +74,13 @@ module.exports = () => {
           .replace(/\n*Found.*errors?\n/, '')
           .replace(/\n*No errors!\n/, '')
           .split(/\n\n/)
-          .filter(line => line && !line.includes('node_modules'))
+          .filter(line => line && !line.includes('Error: node_modules'))
 
         if (result.length > 0) {
           console.log(`
 ${chalk.red(result.join('\n\n'))}
 
-${chalk.bold.red(
-            `Found ${result.length} error${result.length === 1 ? '' : 's'}`
-          )}
+${chalk.bold.red(`Found ${result.length} error${result.length === 1 ? '' : 's'}`)}
 `)
           process.exit(1)
         } else {

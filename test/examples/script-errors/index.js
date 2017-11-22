@@ -1,4 +1,3 @@
 // @flow
-function a(b:string) {
-}
-a(24);
+function a(b: string) {}
+a(24)

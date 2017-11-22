@@ -34,7 +34,7 @@ exports[`main tool examples package-errors matches snapshot 2`] = `""`;
 
 exports[`main tool examples script-errors matches snapshot 1`] = `
 "
-index.js:4
+Error: index.js:4
  4: a(24);
  ^^ number. This type is incompatible with the expected param type of
  2: function a(b:string) {

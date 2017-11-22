@@ -1,6 +1,1 @@
-module.exports = {
-  tabWidth: 2,
-  semi: false,
-  singleQuote: true,
-  trailingComma: 'es5',
-}
+module.exports = require('eslint-config-8select/prettier.config')
