@@ -1,6 +1,14 @@
 language: node_js
+
+os:
+ - linux
+ - osx
+
 node_js:
-  - "node"
+  - 6
+  - 7
+  - 8
+  - node
 
 cache:
   yarn: true
@@ -11,7 +19,7 @@ before_install:
   - npm i -g yarn
 
 install:
-  - yarn --pure-lockfile
+  - yarn install --frozen-lockfile
 
 script:
-    - yarn test
+    - yarn test --verbose
