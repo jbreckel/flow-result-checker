@@ -1,19 +1,3 @@
-exports[`main tool should display help 1`] = `
-"
- Usage: index [options]
-
-
- Options:
-
- -V, --version output the version number
- --no-color 
- --debugging 
- -d, --dir <dir> The directory where to save the flow result and errors. If not specified no files will be saved.
- -f, --file <filename> Name of the result file. defaults to \'results.txt\'
- -e, --error-file <filename> Name of the file where parsing errors are stored. defaults to \'error.txt\'
- -h, --help output usage information
-"
-`;
 exports[`main tool examples no-errors matches snapshot 1`] = `
 "
 Found 0 errors
@@ -34,10 +18,10 @@ exports[`main tool examples package-errors matches snapshot 2`] = `""`;
 
 exports[`main tool examples script-errors matches snapshot 1`] = `
 "
-Error: index.js:4
- 4: a(24);
+Error: index.js:3
+ 3: a(24)
  ^^ number. This type is incompatible with the expected param type of
- 2: function a(b:string) {
+ 2: function a(b: string) {}
  ^^^^^^ string
 
 Found 1 error
@@ -46,3 +30,20 @@ Found 1 error
 `;
 
 exports[`main tool examples script-errors matches snapshot 2`] = `""`;
+
+exports[`main tool should display help 1`] = `
+"
+ Usage: index [options]
+
+
+ Options:
+
+ -V, --version output the version number
+ --no-color 
+ --debugging 
+ -d, --dir <dir> The directory where to save the flow result and errors. If not specified no files will be saved.
+ -f, --file <filename> Name of the result file. defaults to \'results.txt\'
+ -e, --error-file <filename> Name of the file where parsing errors are stored. defaults to \'error.txt\'
+ -h, --help output usage information
+"
+`;
