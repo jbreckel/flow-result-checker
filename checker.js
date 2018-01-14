@@ -74,7 +74,7 @@ module.exports = () => {
           .replace(/\n*Found.*errors?\n/, '')
           .replace(/\n*No errors!\n/, '')
           .split(/\n\n/)
-          .filter(line => line && !line.includes('Error: node_modules'))
+          .filter(line => line && !line.includes('Error: node_modules') && !line.includes('[No file]'))
 
         if (result.length > 0) {
           console.log(`
